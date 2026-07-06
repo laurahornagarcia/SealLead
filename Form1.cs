@@ -22,6 +22,7 @@ namespace SealLead
             {
                 await CargarFiltrosAsync();
                 await CargarBusquedasPendientesAsync();
+                await CargarTablaInicialAsync();
                 await InicializarWebViewAsync();
             };
         }
@@ -115,6 +116,23 @@ namespace SealLead
             int otros = total - nueva;
 
             LBResumen.Text = $"Total: {total}  |  Email enviado: {enviado}  |  Sin envío: {sinEnvio}  |  Estado 'Nueva': {nueva}  |  Otros estados: {otros}";
+        }
+
+        private async Task CargarTablaInicialAsync()
+        {
+            try
+            {
+                var svc = new CompanyQueryService(DatabaseService.ConnectionString);
+                _currentTable = await svc.GetFilteredCompaniesAsync(
+                    "Todos", "Todos", "Todos", "Todos", "Todos", "Todos");
+                DGVEmpresas.DataSource = _currentTable;
+                ActualizarResumen();
+                LBEstado.Text = $"BD cargada: {_currentTable.Rows.Count} empresas";
+            }
+            catch (Exception ex)
+            {
+                LBEstado.Text = $"Error al cargar BD: {ex.Message}";
+            }
         }
 
         private static string NormalizeForSearch(string s)
