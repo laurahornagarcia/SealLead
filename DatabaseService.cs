@@ -5,10 +5,11 @@ namespace SealScout;
 public static class DatabaseService
 {
     private static string DbPath =
-        Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "SealLead",
-            "SealScout.db");
+        Path.GetFullPath(Path.Combine(
+            AppDomain.CurrentDomain.BaseDirectory,
+            "..", "..", "..",
+            "Data",
+            "SealScout.db"));
 
     public static string ConnectionString =>
         $"Data Source={DbPath}";
