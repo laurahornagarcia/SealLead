@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd \"C:\\\\Users\\\\laura.horna\\\\source\\\\repos\\\\SealLead\"; dotnet build -c Debug 2>&1 | Where-Object { $_ -match \"error FS|error CS|Error\" } | Select-Object -First 15)"
+    ]
+  }
+}

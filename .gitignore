@@ -1,0 +1,39 @@
+# Build outputs
+bin/
+obj/
+out/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# NuGet
+*.nupkg
+packages/
+!**/packages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Bases de datos locales (no subir)
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/*.mdf
+**/*.ldf
+
+# User secrets
+**/secrets.json
+appsettings.Development.json
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# WebView2 user data
+**/WebView2/
